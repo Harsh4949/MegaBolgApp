@@ -1,5 +1,5 @@
 
-const config={
+const conf={
 
     appwriteUrl : String(import.meta.env.VITE_APPWRITE_URL),
     appwriteDatabaseId : String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
@@ -10,4 +10,4 @@ const config={
 }
 
 
-export default config
+export default conf
