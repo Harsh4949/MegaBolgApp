@@ -6,7 +6,7 @@ export class AuthService{
     client = new Client();
     account;
 
-    AuthService(){
+    constructor(){
         this.client
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.appwriteProjectId);
@@ -29,7 +29,7 @@ export class AuthService{
             }
 
         } catch (error) {   // may occur excetion
-            throw error;
+            console.log("Appwite Authservice :: CreateAccount :: error ",error);
         }
     }
 
@@ -38,7 +38,7 @@ export class AuthService{
         try {
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            throw error;
+            console.log("Appwite Authservice :: login :: error ",error);
         }
     }
 
@@ -47,7 +47,7 @@ export class AuthService{
         try {
             return await this.account.get();
         } catch (error) {
-            throw error;
+            console.log("Appwite Authservice :: getCurrentUser :: error ",error);
         }
 
         return null; // if user not found
@@ -58,7 +58,7 @@ export class AuthService{
         try {
             return await this.account.deleteSessions();  //Delete all sessions from the user account 
         } catch (error) {
-            throw error;
+            console.log("Appwite Authservice :: logout :: error ",error);
         }
     }
 
