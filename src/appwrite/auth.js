@@ -3,7 +3,7 @@ import conf from "../conf/conf.js"
 
 export class AuthService{
 
-    client = new Client();
+    client = new Client()
     account;
 
     constructor(){
@@ -11,7 +11,8 @@ export class AuthService{
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.appwriteProjectId);
 
-        this.account = new Account(client); 
+        this.account = new Account(this.client);
+ 
     }
 
     async CreateAccount({email,password,name}){  //aync wait until account will done
