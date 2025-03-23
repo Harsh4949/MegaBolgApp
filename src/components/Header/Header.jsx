@@ -37,11 +37,37 @@ function Header() {
       slug : "/add-posts",
       active :authStatus
     },
-
   ]
 
   return (
-    <div>  Header </div>
+    <Conatainer>
+      <nav className='flex '>
+
+          <div className=' mr-4'>   {/* logo*/}
+            <Link to='/'>
+              <Logo width='70x'/>
+            </Link>
+          </div>
+
+          <ul className=' flex ml-auto'> {/* Navigators*/}
+              {naItems.map((item)=>
+                item.active?(
+                  <li key={item.name}>
+                    <button onClick={()=>navigate(item.slug)}
+                    className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                    >{item.name}</button>
+                  </li>
+                ):null
+              )}
+
+              {authStatus && (    
+                <li>
+                  <LogoutBtn/>
+                </li>
+              )}
+          </ul>
+      </nav>
+    </Conatainer>
   )
 }
 
