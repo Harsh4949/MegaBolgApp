@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import authService from '../appwrite/auth';
 import { useDispatch } from 'react-redux';
+import {Input,Button} from './index'
 
 function Signup() {
 
@@ -49,6 +50,42 @@ function Signup() {
 
             {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
             
+             <form onSubmit={handleSubmit}>
+             <div className='space-y-5'>
+             <Input 
+                label= "Name : "
+                placeholder="Enter Your full Name "
+                {...register("home",{
+                    required:true
+                })}
+             />
+              <Input label="Email: "
+                placeholder="Enter Your Email"
+                type="email"
+                {...register("email",{
+
+                    required:true,
+                    validate :{ // not nessory
+                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                        "Email address must be a valid address",
+                    },
+                })} // see syntax in documentaion react-form
+                />
+
+                <Input label="password"
+                type="password"
+                placeholder="Enter Your Password"
+                {...register("password",{
+                    required:true
+                })}
+                />
+
+                <Button type='submit'
+                className='w-full'>
+                    Create Account  
+                </Button>
+             </div>
+             </form>
         </div>
     </div>
   )
