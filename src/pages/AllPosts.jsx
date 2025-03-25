@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Conatainer, postCard } from '../components'
+import { Conatainer, PostCard } from '../components'
 import appwriteservice from '../appwrite/config'
 import PostCard from '../components/PostCard';
 
