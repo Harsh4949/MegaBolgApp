@@ -15,25 +15,21 @@ export class AuthService{
  
     }
 
-    async CreateAccount({email,password,name}){  //aync wait until account will done
-
+    async CreateAccount({email, password, name}) {
         try {
-            
-            const userAcc= await this.account.create(ID.unique(), email, password,name);
-
-            //Check wheter acccount is created or not yes then login
-
-            if (userAcc) {  //login    
-                this.login({email,password});
-            }else{
+            const userAcc = await this.account.create(ID.unique(), email, password, name);
+    
+            if (userAcc) {  
+                await this.login({ email, password }); // Ensure login completes
                 return userAcc;
+            } else {
+                return null;
             }
-
-        } catch (error) {   // may occur excetion
-            console.log("Appwite Authservice :: CreateAccount :: error ",error);
+        } catch (error) {
+            console.log("Appwrite AuthService :: CreateAccount :: error", error);
         }
     }
-
+    
     async login({email,password}){
 
         try {
@@ -43,25 +39,32 @@ export class AuthService{
         }
     }
 
-    async getCurrentUser(){   // islogin
-
+    async getCurrentUser() {
         try {
-            return await this.account.get();
+            const user = await this.account.get();
+            return user;
         } catch (error) {
-            console.log("Appwite Authservice :: getCurrentUser :: error ",error);
-        }
-
-        return null; // if user not found
-    }
-
-    async logout(){
-
-        try {
-            return await this.account.deleteSessions();  //Delete all sessions from the user account 
-        } catch (error) {
-            console.log("Appwite Authservice :: logout :: error ",error);
+            if (error.code === 401) { 
+                console.log("User is not logged in.");
+            } else {
+                console.log("Appwrite AuthService :: getCurrentUser :: error", error);
+            }
+            return null;
         }
     }
+    
+
+    async logout() {
+        try {
+            await this.account.deleteSessions();
+            console.log("User logged out successfully.");
+            return true;
+        } catch (error) {
+            console.log("Appwrite AuthService :: logout :: error", error);
+            return false;
+        }
+    }
+    
 
 }
 

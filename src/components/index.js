@@ -1,8 +1,8 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Conatainer from "./container/Conatainer"
-import Logo from "./Logo";
-import LogoutBtn from "./Header/LogoutBtn";
+//export { Conatainer } from './container/Conatainer';
+//export { default as Logo } from './Logo';
+//export { default as LogoutBtn } from './Header/LogoutBtn';
 import Button from './Button'
 import Input from './Input'
 import RTE from './RTE'
@@ -15,9 +15,8 @@ import AuthLayout from "./AuthLayout"
 export {
     Header,
     Footer,
-    Conatainer,
-    Logo,
-    LogoutBtn,
+  //  Logo,
+   // LogoutBtn,
     Button,
     Input,
     RTE,
@@ -26,6 +25,7 @@ export {
     Login,
     PostCard,
     PostForm,
-    AuthLayout
+    AuthLayout,
+   // Conatainer,
 
 }

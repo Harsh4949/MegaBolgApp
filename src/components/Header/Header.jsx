@@ -1,73 +1,75 @@
 import React from 'react'
-import {Conatainer,Logo,LogoutBtn } from '../index.js' 
+//import {Conatainer, Logo, LogoutBtn} from '../index'
+import Container from '../container/Conatainer'
+//import Logo from '../Logo'
+//import LogoutBtn from './LogoutBtn'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
-
-  const authStatus = useSelector((state)=> state.auth.status)
-
+  const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate()
 
-  const naItems=[
+  const navItems = [
     {
-      name :'Home',
-      slug : "/",
-      active :true
-    },
+      name: 'Home',
+      slug: "/",
+      active: true
+    }, 
     {
-      name :'Login',
-      slug : "/login",
-      active :!authStatus
-    },
-    {
-      name :'Signup',
-      slug : "/signup",
-      active :!authStatus
-    },
-
-    {
-      name :'All Posts',
-      slug : "/all-posts",
-      active :authStatus
-    },
-    {
-      name :'Add Posts',
-      slug : "/add-posts",
-      active :authStatus
-    },
+      name: "Login",
+      slug: "/login",
+      active: !authStatus,
+  },
+  {
+      name: "Signup",
+      slug: "/signup",
+      active: !authStatus,
+  },
+  {
+      name: "All Posts",
+      slug: "/all-posts",
+      active: authStatus,
+  },
+  {
+      name: "Add Post",
+      slug: "/add-post",
+      active: authStatus,
+  },
   ]
 
+
   return (
-    <Conatainer>
-      <nav className='flex '>
-
-          <div className=' mr-4'>   {/* logo*/}
+    <header className='py-3 shadow bg-gray-500'>
+      <Container>
+        <nav className='flex'>
+          <div className='mr-4'>
             <Link to='/'>
-              <Logo width='70x'/>
-            </Link>
+              <Logo width='70px'   />
+
+              </Link>
           </div>
-
-          <ul className=' flex ml-auto'> {/* Navigators*/}
-              {naItems.map((item)=>
-                item.active?(
-                  <li key={item.name}>
-                    <button onClick={()=>navigate(item.slug)}
-                    className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
-                    >{item.name}</button>
-                  </li>
-                ):null
-              )}
-
-              {authStatus && (    
-                <li>
-                  <LogoutBtn/>
-                </li>
-              )}
+          <ul className='flex ml-auto'>
+            {navItems.map((item) => 
+            item.active ? (
+              <li key={item.name}>
+                <button
+                onClick={() => navigate(item.slug)}
+                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                >{item.name}</button>
+              </li>
+            ) : null
+            )}
+            {authStatus && (
+              <li>
+                <LogoutBtn />
+              </li>
+            )}
           </ul>
-      </nav>
-    </Conatainer>
+        </nav>
+        </Container>
+    </header>
   )
 }
 
