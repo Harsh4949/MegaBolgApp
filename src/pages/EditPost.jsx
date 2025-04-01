@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Conatainer,PostCard,PostForm } from '../components'
+import { Container,PostCard,PostForm } from '../components'
 import appwriteService from '../appwrite/config'
 import { useNavigate, useParams } from 'react-router';
 
@@ -25,9 +25,9 @@ const EditPost = () => {
 
   return post ?(
     <div className='py-8'>
-      <Conatainer>
+      <Container>
           <PostCard post={post}/>
-      </Conatainer>
+      </Container>
     </div>
   ) : null
 }

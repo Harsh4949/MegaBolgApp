@@ -1,6 +1,6 @@
 import React from 'react'
 //import {Conatainer, Logo, LogoutBtn} from '../index'
-import Container from '../container/Conatainer'
+import Container from '../container/Container'
 //import Logo from '../Logo'
 //import LogoutBtn from './LogoutBtn'
 import { Link } from 'react-router-dom'
