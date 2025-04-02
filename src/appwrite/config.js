@@ -1,6 +1,5 @@
 import conf from "../conf/conf.js"
-import { Client, ID,Databases,Storage,Query } from "appwrite";
-import {  Account } from "appwrite";
+import { Client, ID, Databases, Storage, Query, Account } from "appwrite";
 export class Service{
 
     client = new Client()
@@ -19,14 +18,14 @@ export class Service{
 
     }
 
-    async createPost({title,sulg,content,feturedImage,status,userId}){
+    async createPost({title,slug,content,feturedImage,status,userId}){
 
         try {
 
             return await databases.createDocument(
                 conf.appwriteDatabaseId, // databaseId
                 conf.appwriteCollectionId, // collectionId
-                sulg, // documentId
+                slug, // documentId
                 {
                     title,
                     content,
@@ -41,14 +40,14 @@ export class Service{
         }
     }
  
-    async updatePost(sulg,{title,content,feturedImage,status}){
+    async updatePost(slug,{title,content,feturedImage,status}){
 
         try {
 
             return await databases.updateDocument(
                 conf.appwriteDatabaseId, // databaseId
                 conf.appwriteCollectionId, // collectionId
-                sulg, // documentId
+                slug, // documentId
                 {
                     title,
                     content,
@@ -63,14 +62,14 @@ export class Service{
         }
     }
 
-    async deletePost(sulg){
+    async deletePost(slug){
 
         try {
 
              await databases.deleteDocument(
                 conf.appwriteDatabaseId, // databaseId
                 conf.appwriteCollectionId, // collectionId
-                sulg    // documentId
+                slug    // documentId
             );
             
             return true;
@@ -78,18 +77,18 @@ export class Service{
         } catch (error) {
             console.log("Appwrite Service :: deletePost :: error ",error);    
             
-            return true;
+            return false;
         }
     }
 
-    async getPost(sulg){
+    async getPost(slug){
 
         try {
 
             return await databases.getDocument(
                 conf.appwriteDatabaseId, // databaseId
                 conf.appwriteCollectionId, // collectionId
-                sulg, // documentId
+                slug, // documentId
             );
 
        } catch (error) {
